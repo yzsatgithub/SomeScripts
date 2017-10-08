@@ -1,0 +1,10 @@
+#!/bin/bash
+
+name=`echo $1 | cut -d '.'  -f 1`
+g++ -c -Wall -g ${name}.cpp
+if [[ $? -eq 0 ]];then echo "+++compiled;"; else echo "###failed to compile."; exit;fi
+g++ ${name}.o -o ./bin/${name}
+if [[ $? -eq 0 ]];then echo "+++linked;"; else echo "###failed to link."; exit;fi
+echo
+echo "+++Running:"
+./bin/${name}
